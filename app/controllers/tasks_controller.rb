@@ -3,8 +3,9 @@ class TasksController < ApplicationController
 
   def index
     #@tasks = Task.all
-    @due_tasks = Task.where("finish_date < ? AND finished", Time.now, false).order(:finish_date)
-    @tasks = Task.where.not("finish_date < ? AND finished", Time.now, false).order(:finish_date)
+    @due_tasks = Task.where("finish_date < ? AND finished = ?", Date.today, false).order(:finish_date)
+    #Task.where("finish_date >= ? AND finished = ?" , Time.now, false).order(:finish_date)
+    @tasks = Task.where(finished: false).order(:finish_date) - @due_tasks
     @finished_tasks = Task.where(finished: true).order(finish_date: :desc)
 
   end
