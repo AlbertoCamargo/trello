@@ -4,7 +4,7 @@ class Task < ActiveRecord::Base
   validates          :user, :title, presence: true
   validates          :finished, inclusion: { in: [true, false] }
   validates_datetime :finish_date, on_or_after: :start_date
-  validates_time     :duration
+  validates_time     :duration, allow_blank: true
 
   # Associations
   belongs_to :user

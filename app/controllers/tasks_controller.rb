@@ -7,7 +7,6 @@ class TasksController < ApplicationController
     #Task.where("finish_date >= ? AND finished = ?" , Time.now, false).order(:finish_date)
     @tasks = Task.where(finished: false).order(:finish_date) - @due_tasks
     @finished_tasks = Task.where(finished: true).order(finish_date: :desc)
-
   end
 
   def show

@@ -1,47 +1,98 @@
 <%= form_for(@task) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+    <% unless @task.errors.empty? %>
+      <script type="text/javascript">
+        Materialize.toast('invalids fields, please review it', 3000)
+      </script>
+    <% end %>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_circle</i>
+        <% if @task.errors[:title].empty?  %>
+          <%= f.text_field :title, { class: 'validate',  autocomplete: 'off'} %>
+          <br>
+        <% else %>
+          <%= f.text_field :title, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
 
-      <ul>
-      <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <%= f.label :title, class: 'active'%>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">description</i>
+        <%= f.text_area :description, { class: 'materialize-textarea', autocomplete: 'off'} %>
+        <%= f.label :description, class: 'active' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
+    <div class="row">
+      <div class="input-field col s3 ">
+      <i class="material-icons prefix">today</i>
+      <%= f.label :start_date, class: 'active' %>
+      <% if @task.errors[:start_date].empty?  %>
+        <%= f.text_field :start_date, class: "datepicker " %>
+      <% else %>
+        <%= f.text_field :start_date, class: "datepicker validate invalid" %>
+      <% end %>
+      </div>
 
-  <div class="field">
-    <%= f.label :duration %><br>
-    <%= f.time_select :duration %>
-  </div>
+      <div class="input-field col s3 ">
+        <i class="material-icons prefix">done_all</i>
+        <%= f.label :finish_date, class: 'active' %>
 
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.date_select :start_date %>
-  </div>
+        <% if @task.errors[:finish_date].empty?  %>
+          <%= f.text_field :finish_date, class: "datepicker" %>
+        <% else %>
+          <%= f.text_field :finish_date, class: "datepicker validate invalid" %>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :finish_date %><br>
-    <%= f.date_select :finish_date %>
-  </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :finished %><br>
-    <%= f.check_box :finished %>
-  </div>
+      <div class="input-field col s3 ">
+        <i class="material-icons prefix">query_builder</i>
+        <% duration =  @task.duration.blank?  ? '' : @task.duration.to_formatted_s(:time) %>
+        <%= f.text_field :duration, id: 'pick-a-time', value: duration %>
+        <%= f.label :duration, class: 'active' %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <div class="input-field col s3">
+        <input name="task[finished]" type="hidden" value="0">
+        <input type="checkbox" value="1" name="task[finished]" id="task_finished" class="filled-in">
+        <label for="task_finished">Finished</label>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col s3 right">
+        <button class="right btn waves-effect waves-light red" type="submit" name="commit" value="Create Task"><%= @action %>
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+
+      <div class="col s3 right">
+        <a class="right btn waves-effect waves-light red " href= <%= "#{tasks_path}"%> ><i class="material-icons right">replay</i>Cancel</a>
+      </div>
+    </div>
+
+
 <% end %>
+
+
+<script type="text/javascript">
+  $('.datepicker').pickadate({
+    selectMonths: true,
+    selectYears: 15
+  });
+
+  $('#pick-a-time').lolliclock({
+    autoclose: true,
+    hour24: true
+  });
+
+</script>
+
+
+
+

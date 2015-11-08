@@ -1,6 +1,10 @@
-<h1>Editing Task</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_path %>
+<%= render partial: "navbar" %>
+<% @action = 'Edit' %>
+<div class= "container">
+  <div class="col s10 offset-s1">
+    <h2 class="center-align">Edit Task</h2>
+    <div class="section">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>
