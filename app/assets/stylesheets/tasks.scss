@@ -3,3 +3,25 @@
     width: 92%;
     width: calc(100% - 3rem);
 }
+
+.chip {
+  margin-top: 5px;
+}
+
+
+.secondary-content .material-icons{
+  color: #26a69a;
+}
+
+.header {
+  color: #ee6e73;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.task-title {
+  text-transform: capitalize;
+  font-weight: bold;
+}

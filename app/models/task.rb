@@ -8,4 +8,12 @@ class Task < ActiveRecord::Base
 
   # Associations
   belongs_to :user
+
+  # Callback
+  before_save :format_attribute
+
+
+  def format_attribute
+    self.title.capitalize!
+  end
 end

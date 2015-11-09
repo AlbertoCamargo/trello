@@ -3,10 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 
 group :development do
-  gem 'web-console', '~> 2.0'
   gem 'sqlite3'
   gem 'spring'
-  gem 'byebug'
 end
 
 group :production do
