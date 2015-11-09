@@ -12,8 +12,8 @@
   <ul class="collection with-header">
     <li class="collection-header header center"><h4> TO DO</h4></li>
     <% @due_tasks.each do |task| %>
-      <li class="collection-item avatar">
-        <i class="material-icons circle red">report_problem</i>
+      <li class="collection-item avatar active">
+        <i class="material-icons circle red icon">report_problem</i>
         <span class="task-title"><%= task.title%> </span><br>
         <div class="chip">
           <%= image_tag("yuna.jpg")%>
@@ -34,23 +34,24 @@
     <% end %>
 
     <% @tasks.each do |task| %>
-      <li class="collection-item avatar">
-        <i class="material-icons circle green">thumb_up</i>
-        <span class="task-title"><%= task.title%> </span><br>
-        <div class="chip">
-          <%= image_tag("yuna.jpg")%>
-          <span class="capitalize"><%= task.user.username %></span>
-        </div>
-        <div class="chip"
-          <br><i class="material-icons">today</i> <%= task.finish_date %> </span>
-        </div>
+      <li class="collection-item">
+        <div>
+          <span class="task-title"><%= task.title%> </span><br>
+          <div class="chip">
+            <%= image_tag("yuna.jpg")%>
+            <span class="capitalize"><%= task.user.username %></span>
+          </div>
+          <div class="chip"
+            <br><i class="material-icons">today</i> <%= task.finish_date %> </span>
+          </div>
 
-        <div class="secondary-content right">
-          <a href= <%= task_path(task) %> ><i class="material-icons">zoom_in</i></a>
-          <a href= <%= edit_task_path(task) %> ><i class="material-icons">assignment</i></a>
-          <%= link_to task_path(task), method: :delete do %>
-            <i class="material-icons">delete</i>
-          <%end%>
+          <div class="secondary-content">
+            <a href= <%= task_path(task) %> ><i class="material-icons">zoom_in</i></a>
+            <a href= <%= edit_task_path(task) %> ><i class="material-icons">assignment</i></a>
+            <%= link_to task_path(task), method: :delete do %>
+              <i class="material-icons">delete</i>
+            <% end %>
+          </div>
         </div>
       </li>
       <% end %>
