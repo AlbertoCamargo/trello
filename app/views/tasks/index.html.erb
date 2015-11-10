@@ -22,7 +22,7 @@
         </div>
 
         <div class="secondary-content right">
-          <a href= <%= task_path(task) %> >
+          <a href= <%= task_path(task) %> id='show' data-remote="true" >
             <i class="material-icons">zoom_in</i>
           </a>
           <a href= <%= edit_task_path(task) %> ><i class="material-icons">assignment</i></a>
@@ -84,4 +84,47 @@
       </li>
     <% end %>
   </ul>
+</div>
+
+
+
+<div id="modal1" class="modal bottom-sheet">
+  <div class="modal-content">
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+      <div class="card-panel grey lighten-5 z-depth-1">
+        <div class="row valign-wrapper">
+          <div class="col s2">
+             <%= image_tag "yuna.jpg", class: 'circle responsive-img' %>
+          </div>
+          <div class="col s10">
+            <h2> hola </h3>
+            <span class="black-text" id="description">
+              This is a square image. Add the "circle" class to it to make it appear circular.
+            </span>
+          </div>
+        </div>
+        <div class="row valign-wrapper ">
+          <div class="col s2">
+            <div class="chip" id="start">
+              sadasdas
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="chip" id="end">
+              sadasdas
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="chip" id="duration">
+              sadasdas
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
 </div>
