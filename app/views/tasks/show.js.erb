@@ -1,1 +1,18 @@
+$( "#author" ).empty();
+$( "#title" ).empty();
+$( "#description" ).empty();
+$( "#start-date" ).empty();
+$( "#end-date" ).empty();
+$( "#duration" ).empty();
+
+
+
 $('#modal1').openModal();
+$( "#author" ).append( "<%="#{@task.user.username}"%>");
+$( "#title" ).append( "<%="#{@task.title}"%>");
+$( "#description" ).append("<%="#{@task.description.dump}"%>");
+$( "#start-date" ).append( "<%="#{@task.start_date}"%>");
+$( "#end-date" ).append( "<%="#{@task.finish_date}"%>");
+$( "#duration" ).append( "<%="#{@task.duration}"%>");
+
+

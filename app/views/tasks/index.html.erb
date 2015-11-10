@@ -22,7 +22,7 @@
         </div>
 
         <div class="secondary-content right">
-          <a href= <%= task_path(task) %> id='show' data-remote="true" >
+          <a href= <%= task_path(task) %> data-remote="true" >
             <i class="material-icons">zoom_in</i>
           </a>
           <a href= <%= edit_task_path(task) %> ><i class="material-icons">assignment</i></a>
@@ -46,7 +46,9 @@
           </div>
 
           <div class="secondary-content">
-            <a href= <%= task_path(task) %> ><i class="material-icons">zoom_in</i></a>
+            <a href= <%= task_path(task) %> data-remote="true" >
+              <i class="material-icons">zoom_in</i>
+            </a>
             <a href= <%= edit_task_path(task) %> ><i class="material-icons">assignment</i></a>
             <%= link_to task_path(task), method: :delete do %>
               <i class="material-icons">delete</i>
@@ -74,7 +76,9 @@
           </div>
 
           <div class="secondary-content">
-            <a href= <%= task_path(task) %> ><i class="material-icons">zoom_in</i></a>
+            <a href= <%= task_path(task) %> data-remote="true" >
+              <i class="material-icons">zoom_in</i>
+            </a>
             <a href= <%= edit_task_path(task) %> ><i class="material-icons">assignment</i></a>
             <%= link_to task_path(task), method: :delete do %>
               <i class="material-icons">delete</i>
@@ -91,40 +95,33 @@
 <div id="modal1" class="modal bottom-sheet">
   <div class="modal-content">
     <div class="col s12 m8 offset-m2 l6 offset-l3">
-      <div class="card-panel grey lighten-5 z-depth-1">
-        <div class="row valign-wrapper">
-          <div class="col s2">
-             <%= image_tag "yuna.jpg", class: 'circle responsive-img' %>
-          </div>
-          <div class="col s10">
-            <h2> hola </h3>
-            <span class="black-text" id="description">
-              This is a square image. Add the "circle" class to it to make it appear circular.
-            </span>
-          </div>
-        </div>
-        <div class="row valign-wrapper ">
-          <div class="col s2">
-            <div class="chip" id="start">
-              sadasdas
-            </div>
-          </div>
-          <div class="col s2">
-            <div class="chip" id="end">
-              sadasdas
-            </div>
-          </div>
-          <div class="col s2">
-            <div class="chip" id="duration">
-              sadasdas
-            </div>
+         <div class="card small">
+          <div class="card-image waves-effect waves-block waves-light">
+            <%= image_tag "office.jpg", class: 'activator' %>
           </div>
 
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4" id="title"><i class="material-icons right">more_vert</i> <br>
+              <div class="chip" id="author">
+                <%= image_tag "yuna.jpg", class: 'activator' %>
+              </div>
+            </span>
+          </div>
+
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4" id="title"><i class="material-icons right">close</i></span>
+            <p id="description"></p>
+            <div class="chip" id="start-date">
+              <i class="material-icons" >today</i>
+            </div>
+            <div class="chip"  id="end-date">
+              <i class="material-icons">done_all</i>
+            </div>
+            <div class="chip" id="duration">
+              <i class="material-icons">query_builder</i>
+            </div>
+          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
   </div>
 </div>

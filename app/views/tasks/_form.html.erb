@@ -51,7 +51,12 @@
 
       <div class="input-field col s3 ">
         <i class="material-icons prefix">query_builder</i>
-        <%= f.number_field :duration, value: ' hours', autocomplete: 'off' %>
+        <% if @task.errors[:duration].empty?  %>
+          <%= f.number_field :duration, { class: 'validate',  autocomplete: 'off'} %>
+          <br>
+        <% else %>
+          <%= f.number_field :duration, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
         <%= f.label :duration, class: 'active' %>
       </div>
 
