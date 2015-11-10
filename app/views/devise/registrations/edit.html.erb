@@ -1,54 +1,119 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <h2 class="header center">EDIT USER</h2>
+  <div class="divider"></div> <br><br>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+    <% unless @user.errors.empty? %>
+      <script type="text/javascript">
+        Materialize.toast('invalids fields, please review it', 3000)
+      </script>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <% if @user.errors[:first_name].empty?  %>
+          <%= f.text_field :first_name, { class: 'validate',  autocomplete: 'off', autofocus: true} %>
+          <br>
+        <% else %>
+          <%= f.text_field :first_name, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
+        <%= f.label :first_name, class: 'active'%>
+      </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
+      <div class="input-field col s6">
+        <% if @user.errors[:last_name].empty?  %>
+          <%= f.text_field :last_name, { class: 'validate',  autocomplete: 'off'} %>
+          <br>
+        <% else %>
+          <%= f.text_field :last_name, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
+        <%= f.label :last_name, class: 'active'%>
+      </div>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">email</i>
+        <% if @user.errors[:email].empty?  %>
+          <%= f.email_field :email, { class: 'validate',  autocomplete: 'off'} %>
+          <br>
+        <% else %>
+          <%= f.email_field :email, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
+        <%= f.label :email, class: 'active' %>
+      </div>
+
+      <div class="input-field col s6 right">
+        <i class="material-icons prefix">supervisor_account</i>
+        <% if @user.errors[:username].empty?  %>
+          <%= f.text_field :username, { class: 'validate',  autocomplete: 'off'} %>
+          <br>
+        <% else %>
+          <%= f.text_field :username, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
+
+        <%= f.label :username, class: 'active'%>
+      </div>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">lock_outline</i>
+        <%= f.password_field :password, autocomplete: "off", class: 'validate' %>
+        <% if @minimum_password_length %>
+          <em>(leave blank if you don't want to change it)</em>
+        <% end %><br />
+        <%= f.label :password %>
+      </div>
+
+      <div class="input-field col s6">
+        <i class="material-icons prefix">vpn_key</i>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'validate' %>
+        <%= f.label :password_confirmation %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6 right">
+        <% if @user.errors[:current_password].empty?  %>
+          <%= f.password_field :current_password, autocomplete: "off", class: 'validate' %>
+          <br>
+        <% else %>
+          <%= f.password_field :current_password, autocomplete: "off", class: 'validate invalid' %>
+        <% end %>
+        <em>(we need your current password to confirm your changes)</em>
+        <%= f.label :current_password %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s3 right">
+        <button class="right btn waves-effect waves-light red" type="submit" name="commit" value="Update">Update
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+
+      <div class="col s3 right">
+        <a class="right btn waves-effect waves-light red" href= '/' ><i class="material-icons right">replay</i>Cancel</a>
+      </div>
+
+      <div class="col s3 right">
+        <a class="right btn waves-effect waves-light red" href = <%= registration_path(resource_name)%> data-method="delete" data-confirm="Are you sure?">
+          <i class="material-icons right">not_interested</i>Delete account
+        </a>
+      </div>
+    </div>
+
   <% end %>
+    <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: 'white-text', method: :delete %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

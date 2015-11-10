@@ -51,8 +51,7 @@
 
       <div class="input-field col s3 ">
         <i class="material-icons prefix">query_builder</i>
-        <% duration =  @task.duration.blank?  ? '' : @task.duration.to_formatted_s(:time) %>
-        <%= f.text_field :duration, id: 'pick-a-time', value: duration %>
+        <%= f.number_field :duration, value: ' hours', autocomplete: 'off' %>
         <%= f.label :duration, class: 'active' %>
       </div>
 
@@ -85,12 +84,6 @@
     selectMonths: true,
     selectYears: 15
   });
-
-  $('#pick-a-time').lolliclock({
-    autoclose: true,
-    hour24: true
-  });
-
 </script>
 
 

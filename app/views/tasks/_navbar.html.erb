@@ -1,13 +1,13 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">Trello</a>
+      <a href="/" class="brand-logo">TRELLO</a>
       <ul class="right hide-on-med-and-down">
         <li>
-          <%= link_to 'Edit profile', edit_user_registration_path  %>
+          <%= link_to 'PROFILE', edit_user_registration_path, { style: 'font-weight: bold;' }%>
         </li>
         <li>
-          <%= link_to 'Log out',  destroy_user_session_path, method: :delete  %>
+          <%= link_to 'LOG OUT',  destroy_user_session_path, {method: :delete, style: 'font-weight: bold;' }  %>
         </li>
       </ul>
     </div>

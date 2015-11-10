@@ -6,8 +6,6 @@
   </a>
 </div>
 
-<p id="notice"><%= notice %></p>
-
 <div class="col s6">
   <ul class="collection with-header">
     <li class="collection-header header center"><h4> TO DO</h4></li>
@@ -24,7 +22,9 @@
         </div>
 
         <div class="secondary-content right">
-          <a href= <%= task_path(task) %> ><i class="material-icons">zoom_in</i></a>
+          <a href= <%= task_path(task) %> >
+            <i class="material-icons">zoom_in</i>
+          </a>
           <a href= <%= edit_task_path(task) %> ><i class="material-icons">assignment</i></a>
           <%= link_to task_path(task), method: :delete do %>
             <i class="material-icons">delete</i>

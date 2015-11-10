@@ -1,44 +1,93 @@
-<h2>Sign up</h2>
+<div class="container">
+  <h2 class="header center">SIGN UP</h2>
+  <div class="divider"></div> <br><br>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <!--<%= devise_error_messages! %> -->
+    <% unless @user.errors.empty? %>
+      <script type="text/javascript">
+        Materialize.toast('invalids fields, please review it', 3000)
+      </script>
+    <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <div class="row">
+      <div class="input-field col s6">
+        <% if @user.errors[:first_name].empty?  %>
+          <%= f.text_field :first_name, { class: 'validate',  autocomplete: 'off', autofocus: true} %>
+          <br>
+        <% else %>
+          <%= f.text_field :first_name, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
+        <%= f.label :first_name, class: 'active'%>
+      </div>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
+      <div class="input-field col s6">
+        <% if @user.errors[:last_name].empty?  %>
+          <%= f.text_field :last_name, { class: 'validate',  autocomplete: 'off'} %>
+          <br>
+        <% else %>
+          <%= f.text_field :last_name, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
+        <%= f.label :last_name, class: 'active'%>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">email</i>
+        <% if @user.errors[:email].empty?  %>
+          <%= f.email_field :email, { class: 'validate',  autocomplete: 'off'} %>
+          <br>
+        <% else %>
+          <%= f.email_field :email, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
+        <%= f.label :email, class: 'active' %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+      <div class="input-field col s6 right">
+        <i class="material-icons prefix">supervisor_account</i>
+        <% if @user.errors[:username].empty?  %>
+          <%= f.text_field :username, { class: 'validate',  autocomplete: 'off'} %>
+          <br>
+        <% else %>
+          <%= f.text_field :username, { class: 'validate invalid',  autocomplete: 'off'} %>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+        <%= f.label :username, class: 'active'%>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">vpn_key</i>
+        <%= f.password_field :password, autocomplete: "off", class: 'validate' %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.label :password %>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">vpn_key</i>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'validate' %>
+        <%= f.label :password_confirmation %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s3 right">
+        <button class="right btn waves-effect waves-light red" type="submit" name="commit" value="Sign up">Sign up
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+
+      <div class="col s3 right">
+        <a class="right btn waves-effect waves-light red" href= '/' ><i class="material-icons right">replay</i>Cancel</a>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+

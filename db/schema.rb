@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 2) do
     t.integer  "user_id",                     null: false
     t.string   "title",                       null: false
     t.boolean  "finished",    default: false, null: false
+    t.integer  "duration",    default: 0,     null: false
+    t.date     "start_date",                  null: false
+    t.date     "finish_date",                 null: false
     t.text     "description"
-    t.date     "start_date"
-    t.date     "finish_date"
-    t.time     "duration"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
