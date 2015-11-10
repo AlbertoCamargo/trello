@@ -101,9 +101,10 @@
           </div>
 
           <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4" id="title"><i class="material-icons right">more_vert</i> <br>
-              <div class="chip" id="author">
+            <span class="card-title activator grey-text text-darken-4"><span class="card-title activator grey-text text-darken-4" id="title"></span><i class="material-icons right">more_vert</i> <br>
+              <div class="chip">
                 <%= image_tag "yuna.jpg", class: 'activator' %>
+                <span  id="author"></span>
               </div>
             </span>
           </div>
@@ -111,14 +112,17 @@
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4" id="title"><i class="material-icons right">close</i></span>
             <p id="description"></p>
-            <div class="chip" id="start-date">
+            <div class="chip">
               <i class="material-icons" >today</i>
+               <span id="start-date"></span>
             </div>
-            <div class="chip"  id="end-date">
+            <div class="chip">
               <i class="material-icons">done_all</i>
+              <span id="end-date"></span>
             </div>
-            <div class="chip" id="duration">
+            <div class="chip">
               <i class="material-icons">query_builder</i>
+              <span id="duration"></span>
             </div>
           </div>
         </div>
